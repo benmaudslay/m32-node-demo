@@ -1,36 +1,12 @@
 const inquirer = require("inquirer")
-
-class pet {
-  constructor(name, type) {
-    this.name = name
-    this.type = type
-  }
-
-  health = 30
-
-  feed() {
-    console.log(`${this.name} is feeding... hunger - 10 etc`)
-    this.health -= 10
-  }
-}
+const { initQuestions } = require("./initQuestions")
+const { pet } = require("./pet")
 
 let myPet
 
 const init = () => {
   inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "type",
-        message: "What type of pet do you want?",
-        choices: ["Pizza", "Burgers", "Pasta"],
-      },
-      {
-        type: "input",
-        name: "name",
-        message: "Whats your pets name?",
-      },
-    ])
+    .prompt(initQuestions)
     .then((answers) => {
       // Use user feedback for... whatever!!
       console.log(answers)
